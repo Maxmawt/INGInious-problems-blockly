@@ -142,8 +142,8 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["courseid"] = task.get_course_id()
         blockly_dico["taskid"] = task.get_id()
         blockly_dico["filenames"] = []
-        for filename in self._files + self._blocks_files:
-            blockly_dico["filenames"].append(str(filename))
+        files = self._files + self._blocks_files
+        blockly_dico["filenames"] = [str(filename) for filename in files]
         blockly_dico["toolbox"] = self._toolbox
         blockly_dico["id"] = self.get_id()
         blockly_dico["workspace"] = self._workspace
