@@ -67,20 +67,20 @@ function studio_init_template_blockly(well, pid, problem) {
 
         $("#blockFactoryModalBody").html($("#subproblem_blockly_factory").detach());
 
-        var basicToolbox = Toolbox.FULL;
+        /*var basicToolbox = StandardCategories;
         var toolbox = $("#toolbox-" + pid).text();
         var workspaceBlocks = $("#workspace-" + pid).text();
 
         factoryController = new FactoryController('blocklyFactory', basicToolbox, workspaceBlocks, problem["options"], pid);
         var preview = new Preview(factoryController);
         factoryController.setPreview(preview);
-        factoryController.injectWorkspaces();
+        factoryController.injectWorkspaces();*/
     });
 
     $('#blockFactoryModal').on('hidden.bs.modal', function() {
         // If you want this behavior to be BEFORE the visual part, use hide.bs.modal, if after use hidden.bs.modal
         // When the modal is closed, the workspace (from the initial page must be updated)
-        factoryController.dispose();
+        //factoryController.dispose();
     });
 
 }
