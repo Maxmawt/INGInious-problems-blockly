@@ -213,7 +213,8 @@ $#
 <div class="form-group">
     <link rel="stylesheet" href="$get_homepath()/plugins/blockly/static/bootstrap-modal-fullscreen.css">
     <script src="$get_homepath()/plugins/blockly/static/bootstrap-modal-backdrop.js" type="text/javascript" charset="utf-8"></script>
-    <div id="blockFactoryModal" class="modal modal-fullscreen fade" role="dialog" tabindex="-1">
+    <!--<div id="blockFactoryModal">
+
         <div class="modal-dialog" style="width:100vw;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,9 +229,10 @@ $#
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="col-sm-offset-1 col-sm-10">
-        <button class="btn btn-info btn-sm btn-block" type="button" name="button" data-toggle="modal" data-target="#blockFactoryModal">
-            <span class="glyphicon glyphicon-sunglasses"></span> Edit toolbox/workspace graphically</button>
+        <button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_$(key)_toolbox('PID')" style="margin-bottom:30px;">
+        <span class="glyphicon glyphicon-sunglasses"></span> Edit toolbox/workspace graphically
+    </button>
     </div>
 </div>

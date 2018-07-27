@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="target-densitydpi=device-dpi, height=660, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Blockly Demo: Blockly Developer Tools</title>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../../closure-library/closure/goog/base.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../blockly/blockly_compressed.js"></script>
+  <script src="../blockly/javascript_compressed.js"></script>
+  <script src="../blockly/python_compressed.js"></script>
+  <script src="../blockly/dart_compressed.js"></script>
+  <script src="../blockly/php_compressed.js"></script>
+  <script src="../blockly/lua_compressed.js"></script>
+  <script src="../blockly/msg/messages.js"></script>
+  <script src="../blockly/msg/js/en.js"></script>
+  <script src="../blockly/blocks_compressed.js"></script>
+  <script src="../closure-library/closure/goog/base.js"></script>
   <script src="analytics.js"></script>
   <script src="block_definition_extractor.js"></script>
   <script src="factory_utils.js"></script>
@@ -28,26 +34,19 @@
   <script src="block_exporter_controller.js"></script>
   <script src="blocks.js"></script>
   <script src="app_controller.js"></script>
-  <script src="/storage.js"></script>
+  <script src="../closure-library/closure/goog/storage/storage.js"></script>
   <link rel="stylesheet" href="factory.css">
   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-  <script>
-    var blocklyFactory;
-    var init = function() {
-      BlocklyDevTools.Analytics.init();
-
-      blocklyFactory = new AppController();
-      blocklyFactory.init();
-      window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
-    };
-    window.addEventListener('load', init);
-  </script>
+  <script src="blockly_factory.js"></script>
 </head>
 <body>
   <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
     <a href="../index.html">Demos</a> &gt; Blockly Developer Tools
     <button id="helpButton" title="View documentation in new window.">
       <span>Help</span>
+    </button>
+    <button id="saveToINGI">
+      <span>Save to INGInious</span>
     </button>
   </h1>
   <div id="tabContainer">

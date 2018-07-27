@@ -1,3 +1,6 @@
+var tool;
+var w;
+var prob;
 /**
  * Init a blockly template
  * @param well: the DOM element containing the input fields
@@ -5,14 +8,66 @@
  * @param problem
  */
 function studio_init_template_blockly(well, pid, problem) {
+    prob = problem;
     var row, new_row_content;
     var val = "";
 
     var toolboxEditor = registerCodeEditor($('#toolbox-' + pid)[0], 'xml', 10);
     toolboxEditor.setValue("toolbox" in problem ? problem.toolbox : "<xml></xml>");
+    var toolbox = "toolbox" in problem ? problem.toolbox : "<xml></xml>";
+    tool = toolbox;
+    localStorage.toolbox  = toolbox;
 
     var workspaceEditor = registerCodeEditor($('#workspace-' + pid)[0], 'xml', 10);
     workspaceEditor.setValue("workspace" in problem ? problem.workspace : "<xml></xml>");
+    var workspace = "workspace" in problem ? problem.workspace : "<xml></xml>";
+    w = workspace;
+    localStorage.workspace = workspace;
+
+    var blocks_file = document.getElementById("switch").href + "/blocks.js";
+    localStorage.blocks_file = blocks_file;
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var response = httpRequest.responseText;
+                var tab = response.split("\n");
+                var block_text = "";
+                var bool = false;
+                for (var i = 0; i< tab.length; i ++){
+                    if (bool){
+                        block_text += tab[i] + "\n";
+                    }
+                    else{
+                        if (tab[i] == "// Extensions to Blockly's language and JavaScript generator.") {
+                            block_text += tab[i] + "\n";
+                            bool = true;
+                        }
+                    }
+                }
+                localStorage.blocks_text = block_text;
+            }
+        }
+    };
+    httpRequest.open('GET', blocks_file);
+    httpRequest.send();
+
+    document.addEventListener("focus",function () {
+        if (localStorage.workspace !== workspace){
+            workspace = localStorage.workspace;
+            w = workspace;
+            workspaceEditor.setValue(workspace);
+            problem.workspace = workspace;
+        }
+        if (localStorage.toolbox !== toolbox) {
+            toolbox = localStorage.toolbox;
+            tool = toolbox;
+            toolboxEditor.setValue(toolbox);
+            problem.toolbox = toolbox;
+        }
+    });
+
+
 
     var options = "options" in problem ? problem.options : {
         "collapse" : false,
@@ -60,28 +115,30 @@ function studio_init_template_blockly(well, pid, problem) {
         });
     }
 
-    var factoryController;
+    /*var factoryController;
     $('#blockFactoryModal').on('shown.bs.modal', function() {
         // FIXME Next line is a fix, please monitor https://github.com/google/blockly/issues/56
+
         $(document).off('focusin.modal');
 
         $("#blockFactoryModalBody").html($("#subproblem_blockly_factory").detach());
 
-        /*var basicToolbox = StandardCategories;
+
+        var basicToolbox = StandardCategories;
         var toolbox = $("#toolbox-" + pid).text();
         var workspaceBlocks = $("#workspace-" + pid).text();
 
         factoryController = new FactoryController('blocklyFactory', basicToolbox, workspaceBlocks, problem["options"], pid);
         var preview = new Preview(factoryController);
         factoryController.setPreview(preview);
-        factoryController.injectWorkspaces();*/
+        factoryController.injectWorkspaces();
     });
 
     $('#blockFactoryModal').on('hidden.bs.modal', function() {
         // If you want this behavior to be BEFORE the visual part, use hide.bs.modal, if after use hidden.bs.modal
         // When the modal is closed, the workspace (from the initial page must be updated)
         //factoryController.dispose();
-    });
+    });*/
 
 }
 
@@ -264,4 +321,10 @@ function studio_create_blockly_blocks_files(pid, filename)
     } else {
         $("#file-" + pid + "-" + index).val("");
     }
+}
+
+function studio_create_blockly_toolbox(pid)
+{
+    var url = window.location.origin + "/plugins/blockly/static/blocklyfactory/index.html"
+    var opener = window.open(url)
 }

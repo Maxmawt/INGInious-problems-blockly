@@ -104,6 +104,7 @@ $#
     </div>
     <div id="subproblem_$(key)_factory">
 
+
         <!-- Blockly official JavaScript -->
         <script src="$get_homepath()/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
         <script src="$get_homepath()/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
@@ -136,7 +137,7 @@ $#
         <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/app_controller.js" charset="utf-8"></script>
         <script src="$get_homepath()/plugins/blockly/static/closure-library/closure/goog/storage/storage.js"></script>
 
-
+    <!--
         <div id="blocklyFactory">
             <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
             <link rel="stylesheet" href="$get_homepath()/plugins/blockly/static/blocklyfactory/factory.css">
@@ -161,8 +162,9 @@ $#
                 <div id="blocklibraryExporter_tab" class="tab taboff">Block Exporter</div>
                 <div id="workspaceFactory_tab" class="tab taboff">Workspace Factory</div>
               </div>
-
+        -->
               <!-- Exporter tab -->
+        <!--
               <div id="blockLibraryExporter">
                 <br>
                 <p>
@@ -182,8 +184,10 @@ $#
 
                   <div id="blockSelector"></div>
                 </div>
+        -->
 
                 <!-- Users may customize export settings through this form -->
+        <!--
                 <div id="exportSettings">
                   <br>
                   <h3> Export Settings </h3>
@@ -237,8 +241,10 @@ $#
                   </div>
                 </div>
               </div>
-
+        -->
               <!-- Workspace Factory tab -->
+
+        <!--
 
               <div id="workspaceFactoryContent">
                 <div id="factoryHeader">
@@ -386,7 +392,10 @@ $#
                 </aside>
               </div>
 
+        -->
+
               <!-- Blockly Factory Tab -->
+        <!--
               <table id="blockFactoryContent">
                 <tr width="100%" height="10%">
                   <td width="50%" height="5%">
@@ -460,9 +469,10 @@ $#
                       </tr>
                       <tr>
                         <td height="5%">
-                          <h3>Block Definition:
+                          <h3>Block Definition:-->
                             <!-- TODO(#1268): Separate concerns of format and editable.
                               -               Add "Editable" state toggle button? -->
+        <!--
                             <select id="format">
                               <option value="JSON">JSON</option>
                               <option value="JavaScript">JavaScript</option>
@@ -532,12 +542,13 @@ $#
                   <block type="field_angle"></block>
                   <block type="field_dropdown"></block>
                   <block type="field_checkbox"></block>
-                  <block type="field_colour"></block>
+                  <block type="field_colour"></block>-->
                   <!--
                   Date picker commented out since it increases footprint by 60%.
                   Add it only if you need it.  See also goog.require in blockly.js.
                   <block type="field_date"></block>
                   -->
+        <!--
                   <block type="field_variable"></block>
                   <block type="field_image"></block>
                 </category>
@@ -861,6 +872,6 @@ $#
                 <sep></sep>
                 <category name="Block Library" colour="260" id="blockLibCategory"></category>
               </xml>
-        </div>
+        </div>-->
 
     </div>
