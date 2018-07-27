@@ -46,9 +46,16 @@ BlocklyTask = function(options, toolbox, workspaceBlocks) {
     this.options = options;
     this.options.toolbox = toolbox;
 
+    this.language = "language" in this.options ? this.options.language : "python";
+
     this.display();
 
-    this.editor = registerCodeEditor(this.codeArea[0], 'python', 10);
+    if (this.language === 'python') {
+        this.editor = registerCodeEditor(this.codeArea[0], 'python', 10);
+    } else {
+        this.editor = registerCodeEditor(this.codeArea[0], 'javascript', 10);
+    }
+
     this.editor.setOption("readOnly", true);
 
     this.workspace = this.injectWorkspace(this.blocklyDiv[0], this.options, workspaceBlocks);
@@ -221,8 +228,14 @@ BlocklyTask.prototype.stopCodeExecution = function() {
 BlocklyTask.prototype.updateCodeArea = function(self) {
     return function() {
         /* Insert the translated code in the textarea from workspace */
-        var code = Blockly.Python.workspaceToCode(self.workspace);
-        self.codeArea.val(code.replace("\r", ""));
+        var code;
+        if (this.language === "python"){
+            code = Blockly.Python.workspaceToCode(self.workspace);
+            self.codeArea.val(code.replace("\r", ""));
+        } else {
+            code = Blockly.JavaScript.workspaceToCode(self.workspace);
+            self.codeArea.val(code.replace("\r", ""));
+        }
         self.editor.setValue(self.codeArea.val());
         self.editor.refresh();
     };

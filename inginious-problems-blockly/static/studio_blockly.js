@@ -41,7 +41,8 @@ function studio_init_template_blockly(well, pid, problem) {
             "maxScale" : "3.0",
             "minScale" : "0.3",
             "scaleSpeed" : "1.2"
-        }
+        } ,
+        "language" : "python"
     };
 
     workspace_options(pid,options);
@@ -92,6 +93,7 @@ function workspace_options(pid, options){
     $("#maxBlocks-" + pid).val("maxBlocks" in options ? options.maxBlocks : "Infinity");
     $("#trashcan-" + pid).prop('checked', "trashcan" in options ? options.trashcan : false);
     $("#horizontalLayout-" + pid).prop('checked', "horizontalLayout" in options ? options.horizontalLayout : false);
+    $("#language-" + pid).val("language" in options ? options.language : "python");
 
     if ("toolboxPosition" in options && (options.toolboxPosition === "start" || options.toolboxPosition === "end")) {
         $("#toolboxPosition-" + pid).val(options.toolboxPosition);
